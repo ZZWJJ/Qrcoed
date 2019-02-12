@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>素材火www.sucaihuo.com - 登录</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>   
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<script type="text/javascript">
+function sendAjax()
+{
+        var username = $("#username").val();
+        var password = $("#password").val();
+        console.log(username+"=="+password);
+        var vcode = $("#vcode").val();
+        //var rememberMe =$('#rememberMe').is(':checked');
+ $.ajax(
+    {
+        url:"/login",
+        data:{"username":username,"password":password},
+        type:"post",
+        /* dataType:"json", */
+        success:function(data)
+        { 
+             if(data == 'ok'){
+              	//alert(data);
+              	window.location.href='test';
+             }else{
+            	$("#erro").html("登录失败，用户名或密码不正确！");
+            	$("#tip").show();
+            } 
+ 
+        },
+        error: function() {
+            $("#erro").html("登录失败");
+            $("#tip").show();
+          }
+    }); 
+    }
+</script>
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">聘</h1>
+
+            </div>
+            <h3>欢迎使用 盐城招聘网后台管理系统</h3>
+
+            <form class="m-t" role="form">
+            	<div id="tip" style="display:none"><h4 id="erro" style="color:red;"></h4></div>
+                <div class="form-group">
+                    <input type="name" id="username" class="form-control" placeholder="工号" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" class="form-control" placeholder="密码" required="">
+                </div>
+                <input type="button" onclick="sendAjax()" value="登录" id="ajaxLogin"/>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

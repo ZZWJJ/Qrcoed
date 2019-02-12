@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>求职人员列表</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/mdialog.css">
+</head>
+<body>
+<!--头部-->
+<div class="header dh">
+    <div class="baoo">
+        <h1 class="logo" style="color:#FFFFFF;">人员列表</h1>
+        <div class="dh_close"><img src="../images/index_cd.png" alt="close"></div>
+    </div>
+</div>
+<div class="nav full">
+    <ul>
+        <li><a href="javascript:history.go(-1);" target="_self">返回上一页</a></li>
+        <li><a href="../wxuser/toWxLogin" target="_self" th:if="${loginName eq null}">登录</a></li>
+        <li><a href="#" th:if="${loginName eq null}">注册</a></li>
+        <li><a href="#" th:if="${loginName ne null}">我的</a></li>
+    </ul>
+    <img src="../images/index_cuo.png" alt="cuo" class="nav_cuo">
+</div>
+<!--头部-->
+<section class="about_banner rczp_banner">
+    <div class="about_bannern">
+        <p>求职人员列表</p>
+    </div>
+</section>
+<div class="index_hx_o">
+    <p class="pt">求职人员列表</p>
+</div>
+<article class="items_o">
+    <div class="mar30 lShodow bradius rczp_t" th:each="wxuser,iterStat:${wxuserList}">
+        <div class="dibf">
+            <div class="lmmc clearfix">
+                <p class="fl" th:text="${wxuser.username}">张三丰</p>
+            </div>
+            <div th:text="${wxuser.id}" style="display:none"></div>
+            <div th:text="${wxuser.jobid}" style="display:none"></div>
+            <p class="zlmxs">投递岗位：<text th:text="${wxuser.jobname}">男</text></p>
+            <p class="zlmxs" th:if="${wxuser.sex = 1}">性别：<text>男</text></p>
+             <p class="zlmxs" th:if="${wxuser.sex = 0}">性别：女</p>
+            <p class="zlmxs">年龄：<text th:text="${wxuser.age}">36</text>岁</p>
+            <p class="zlmxs">联系电话：<text th:text="${wxuser.telphone}">15822566589</text></p>
+            <p class="zlmxs">家庭地址：<text th:text="${wxuser.home}">亭湖区开放大道16号</text></p>
+            <input class="btn btn-danger ripple" type="button" th:onclick="'javascript:delMyInfo('+${wxuser.id}+','+${wxuser.jobid}+');'" value="删除">
+        </div>
+    </div>
+</article>
+<!--底部-->
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script>
+function delMyInfo(userid,jobid){	
+	$.ajax({
+		url:"/wxcom/delResum",
+		method:"post",
+		data:{"userid":userid,"jobid":jobid},
+		//dataType:"json",
+		success:function(data){
+			console.log(data);
+			if(data==1){
+				alert("删除成功！")
+				window.location.reload();
+			}else{
+				alert("删除失败！")
+			}
+		},
+		error:function(data){
+				alert("删除失败！")
+		}
+	});
+}
+</script>
+</body>
+</html>

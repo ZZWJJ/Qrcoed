@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>简历注册</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+</head>
+<body>
+<!--头部-->
+<div class="header dh">
+    <div class="baoo">
+        <h1 class="logo" style="color:#FFFFFF;">我的简历</h1>
+        <div class="dh_close"><img src="../images/index_cd.png" alt="close"></div>
+    </div>
+</div>
+<div class="nav full">
+    <ul>
+        <li><a href="javascript:history.go(-1);" target="_self">返回上一页</a></li>
+        <li><a href="../wxuser/toWxLogin" target="_self" th:if="${loginName eq null}">登录</a></li>
+        <li><a href="#" th:if="${loginName eq null}">注册</a></li>
+        <li><a href="#" th:if="${loginName ne null}">我的</a></li>
+    </ul>
+    <img src="../images/index_cuo.png" alt="cuo" class="nav_cuo">
+</div>
+<!--头部-->
+<section class="about_banner rczp_banner">
+    <div class="about_bannern">
+        <p>我的简历</p>
+        <span>Registration</span>
+    </div>
+</section>
+<section class="mar30 lShodow bradius rczp_t">
+    <h3 class="join_t join_t2">特别提示</h3>
+    <p class="mar30 tips">Tips：登录账号为您输入的手机号码，密码为手机号码后6位。</p>
+    <p class="mar30 tips">Tips：您已登陆，请重新扫码进入公司页面进行投递！</p>
+</section>
+<div th:if="${wxuserinfo eq null}"> 您尚未注册 </div>
+<form action="" method="post" id="MyInfoForm" th:if="${wxuserinfo ne null}" th:object="${wxuserinfo}">
+    <div class="join_part2 mar30 lShodow bradius">
+        <h3 class="join_t join_t2">我的简历</h3>
+        <div class="join_infor">
+            <div class="join_txt join_part2_txt">
+                <div class="form-group" style="display:none">
+                    <span>id：</span> <input type="text" class="input-group-lg" placeholder="请输入您的姓名" name="id" th:field=*{id}>
+                </div>
+                <div class="form-group">
+                    <span>姓名：</span> <input type="text" class="input-group-lg" placeholder="请输入您的姓名" name="username" th:field=*{username}>
+                </div>
+                <div class="form-group">
+                    <span>手机号：</span> <input type="text" class="input-group-lg" placeholder="请输入有效的手机号" minlength="11" 
+                    maxlength="11" name="telphone" th:field=*{telphone} readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <span>性别：</span> <input type="radio" name="sex" value="1" th:field=*{sex}
+                                            style="margin-left: 0.2rem;margin-right: 0.3rem"  checked>男
+                    <input type="radio" name="sex" value="0" th:field=*{sex} style="margin-left: 0.5rem;margin-right: 0.3rem">女
+                </div>
+                <div class="form-group">
+                    <span>年龄：</span> <input type="text" class="input-group-lg" placeholder="请输入年龄" name="age" th:field=*{age}>
+                </div>
+                <div class="form-group">
+                    <span>现居住地：</span> <input type="text" class="input-group-lg" placeholder="如：亭湖区开放大道108号" name="home" th:field=*{home} required>
+                </div>
+
+                <!--<div class="form-group">-->
+                <!--<span>工作经验：</span>-->
+                <!--<select name="work-ex">-->
+                <!--<option value="one">1年</option>-->
+                <!--<option value="two">2年</option>-->
+                <!--<option value="more">2年以上</option>-->
+                <!--<option value="none">无工作经验</option>-->
+                <!--</select>-->
+                <!--</div>-->
+            </div>
+            <div class="display_all">
+                <div class="drop">查看全部<img src="../images/hx_xia.png" alt="查看全部" style="width: 0.1rem;"></div>
+            </div>
+        </div>
+    </div>
+<!--     <div class="join_part2 mar30 lShodow bradius">
+        <h3 class="join_t join_t2">其他信息(工作经历、教育背景)</h3>
+        <div class="join_infor">
+            <div class="join_txt join_part2_txt">
+                <div class="form-group">
+                    <span>公司名称：</span> <input type="text" class="input-group-lg" placeholder="请输入您近期就职的公司">
+                </div>
+                <div class="form-group">
+                    <span>职位名称：</span> <input type="text" class="input-group-lg" placeholder="如：文员">
+                </div>
+                <div class="form-group">
+                    <span>月薪：</span> <input type="text" class="input-group-lg" placeholder="元/月">
+                </div>
+                <div class="form-group">
+                    <span>学校名称：</span> <input type="text" class="input-group-lg" placeholder="南京师范大学">
+                </div>
+                <div class="form-group">
+                    <span>所学专业：</span> <input type="text" class="input-group-lg" placeholder="汉语言文学">
+                </div>
+                <div class="form-group">
+                    <span>最高学历：</span> <input type="text" class="input-group-lg" placeholder="本科">
+                </div>
+            </div>
+            <div class="display_all">
+                <div class="drop">查看全部<img src="../images/hx_xia.png" alt="查看全部" style="width: 0.1rem;"></div>
+            </div>
+        </div>
+    </div> -->
+    <div class="mar30 bradius rczp_t" >
+        <button class="btn btn-primary btn-lg ripple" type="submit" value="" onclick="updateMyInfo()">修改简历</button>
+    </div>
+</form>
+<!--人才招聘 e-->
+<!--联系我们开始-->
+
+<!--底部-->
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script>
+function updateMyInfo(){
+	var param = $("#MyInfoForm").serializeArray();
+	//debugger;
+	//$("#conf").attr("onclick","addUser()");
+	$.ajax({
+		url:"/wxuser/putMyInfo",
+		method:"post",
+		data:param,
+		//dataType:"json",
+		success:function(data){
+			console.log(data);
+			if(data==1){
+				alert("更新成功！")
+			}else{
+				alert("更新失败！")
+			}
+		},
+		error:function(data){
+			alert("更新失败！")
+		}
+	});
+}
+</script>
+</body>
+</html>

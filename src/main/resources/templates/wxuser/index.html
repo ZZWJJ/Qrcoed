@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <style type="text/css">
+	/*更多*/
+	.title-block {
+	    height: 1.2rem;
+	}
+	
+	.block {
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-direction: reverse;
+	    -ms-flex-flow: column-reverse nowrap;
+	    flex-flow: column-reverse nowrap;
+	    margin: 0 auto;
+	    /*color: #4C4C4C;*/
+	}
+	
+	.block > .detail {
+	    max-height: 6rem;
+	    margin-bottom: 10px;
+	    overflow: hidden;
+	}
+	/*展开收起按钮*/
+	.block > .case-block {
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	    justify-content: center;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	    align-items: center;
+	    width: 2.1rem;
+	    height: 0.5rem;
+	    margin: 0 auto 0;
+	    color: #0e0e0e;
+	    background: #fff;
+	    border: 1px solid #b1b1b1;
+	    border-radius: 0.1rem;
+	}
+	
+	.block > .case-block div:nth-of-type(1) {
+	    display: block;
+	}
+	
+	.block > .case-block div:nth-of-type(2) {
+	    display: none;
+	}
+	
+	.block > [type="checkbox"] {
+	    position: relative;
+	    display: block;
+	    /*width: 120px;*/
+	    height: 2rem;
+	    margin: -1rem auto 0;
+	    z-index: 1000;
+	    opacity: 0;
+	}
+	
+	.block > [type="checkbox"]:hover + .case-block {
+	    background-color: #f5f5f5;
+	}
+	
+	.block > [type="checkbox"]:checked + .case-block div:nth-of-type(1) {
+	    display: none;
+	}
+	
+	.block > [type="checkbox"]:checked + .case-block div:nth-of-type(2) {
+	    display: block;
+	}
+	
+	.block > [type="checkbox"]:checked + .case-block + .detail {
+	    max-height: inherit;
+	}	
+	/*更多结束*/
+	.btn-sm {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    text-align: center;
+    position: absolute;
+    bottom: 0.1rem;
+    z-index: 2;
+	}
+	.btn-sm, .btn-group-sm > .btn {
+    padding:0.1rem 0.2rem;
+    font-size: 0.1rem;
+    /*line-height: 1.5;*/
+    border-radius: 3px
+	}	   
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="header dh">
+    <div class="baoo">
+        <!--<div class="tel"><img src="images/tel.png" alt="tel"></div>-->
+        <!--企业logo-->
+        <h1 class="logo"><a href="index.html"><img src="../images/logo_5.png" alt="logo" style="height:1rem"></a></h1>
+        <div class="dh_close"><img src="../images/index_cd.png" alt="close"></div>
+    </div>
+
+</div>
+<div class="nav full">
+    <ul>
+        <li><a href="#">首页</a></li>
+        <li><a href="../wxuser/toWxLogin" target="_self" th:if="${loginName eq null}">登录</a></li>
+        <li><a href="../wxuser/toRegister" th:if="${loginName eq null}">注册</a></li>
+        <li><a href="../wxuser/toMyInfo" th:if="${loginName ne null}">我的</a></li>
+    </ul>
+    <img src="../images/index_cuo.png" alt="cuo" class="nav_cuo">
+</div>
+<!--头部-->
+<!--主体部分 s-->
+<div class="wrap">
+    <!--公司图片-->
+    <section class="banner_wrap">
+        <div class="swiper-container banner full">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide full" style="background-image:url(../images/banner1.jpg)">
+                    <!--公司图片、名称-->
+                    <p class="img1" style="width: 5rem;top:36%;left:15%;position: absolute;" th:text="${cominfo.cname}">盐城市美环减振器制造有限公司</p>
+                </div>
+            </div>
+        </div>
+        <div class="down"><img src="../images/down2.png" alt="向下点击" class="img1"></div>
+    </section>
+    <!--公司图片 -->
+    <!--公司简介-->
+    <section class="index_hx">
+        <div class="index_hx_o">
+            <p class="po"><span>Company Profile</span></p>
+            <p class="pt">公司简介</p>
+            <a></a>
+        </div>
+        <div class="index_hx_t">
+            <!--公司简介-->
+            <p th:text="${cominfo.addinfo}"> 盐城市美环减振器制造有限公司是一所具有独立设计、生产、销售减振器的专业厂家，主要从事中央空调、通风设备、精密仪器等设备上的隔振产品的开发、生产。
+                本公司成立于1999年，至今已有18年历史，18年磨一剑，我们的品牌已经稳居行业内第一，产品遍布全世界，这是我们的荣誉，也是我们的坚持。
+                成就美环的除了各项人性化的制度，最不可或缺的就是坚持不懈的人才，不论是一线的工人，还是二线的管理服务人员，大家都同心协力，
+                为了这份事业发挥自己螺丝钉的作用。</p>
+        </div>
+    </section>
+    <!--公司简介 -->
+<!--     福利待遇
+    <section class="index_ys">
+        <div class="index_hx_o">
+            <p class="po"><span>Group advantage</span></p>
+            <p class="pt">福利待遇</p>
+        </div>
+        <div class="index_ys_o">
+            <div class="s">
+                <dl>
+                    <dt>保险</dt>
+                    <dd>缴纳五险</dd>
+                </dl>
+                <dl>
+                    <dt>节假日</dt>
+                    <dd>做六休一<br>节假日福利</dd>
+                </dl>
+                <dl>
+                    <dt>其他</dt>
+                    <dd>绩效奖、年终奖<br>年会</dd>
+                </dl>
+
+                <dl>
+                    <dt>更多</dt>
+                    <dd>更多详细信息<br><a href="register.html" target="_self" >请投递简历查看</a></dd>
+                </dl>
+            </div>
+        </div>
+    </section> -->
+    <!--福利待遇 e-->
+    <!--招聘岗位-->
+ <div class="index_dt">
+        <div class="swiper-container swiper-news group_news">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="inner">
+                        <div class="index_hx_o">
+                            <p class="po"><span>Recruitment</span></p>
+                            <p class="pt">招聘岗位</p>
+                        </div>
+                        <div class="lShodow ridiu">
+                            <div class="block">
+                                <input type="checkbox">
+                                <div class="case-block">
+                                    <div>展开</div>
+                                    <div>收起</div>
+                                </div>
+		                        <div class="detail">
+		                        	<div th:each="job,iterStat:${jobList}">
+			                        	<div class="between box list">
+			                                <!--岗位名称-->
+			                                <div class="txt"><h4 th:text="${job.jobname}">CAD制图员</h4>
+			                                    <!--基本要求--><p><span>月薪：<text th:text="${job.salary}">3500</text>元/月</span><span><text th:text="${job.num}"></text>人</span></p>
+			                                </div>
+                                            <input style="color:#fff;background-color:#337ab7;border-color:#2e6da4;text-align:center;width:1.2rem;height:0.5rem;padding:0.1rem 0.2rem;
+                                             border-radius:3px;margin:0 0.2rem;" value="投简历" type="button" th:onclick="'javascript:sendMyInfo(\''+${job.id}+'\');'">
+			                            </div>                       	
+		                        	</div>
+		                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+    <!--招聘岗位结束-->
+    <!--联系我们开始-->
+    <div class="footer1">
+        <p><span>联系人：</span><text th:text="${cominfo.contactor}">张小姐</text></p>
+        <p><span>联系电话：</span><text th:text="${cominfo.phone}">0515-88866558</text></p>
+<!--         <a class="btn btn-primary btn-lg ripple" href="#" target="_self" onclick="sendMyInfo()">投递简历</a> -->
+    </div>
+</div>
+<!--联系我们-->
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script>
+function sendMyInfo(id){	
+	$.ajax({
+		url:"/wxuser/sendMyInfo",
+		method:"post",
+		data:{"jobid":id},
+		//dataType:"json",
+		success:function(data){
+			console.log(data);
+			if(data==1){
+				alert("您的简历已投递成功！")
+			}else{
+				alert("您尚未登陆！")
+			}
+		},
+		error:function(data){
+				alert("您尚未登陆！")
+		}
+	});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<title>Insert title here</title>
+</head>
+<body>
+登录成功！
+<a href="toTable">点击进入table</a>
+<h2 shiro:hasPermission="test">有这个权限啊</h2>
+</body>
+</html>

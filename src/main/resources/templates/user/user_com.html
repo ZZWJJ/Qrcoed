@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>首页-后台管理系统</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- <link href="../css/bootstrap.min.css?v=3.4.0" rel="stylesheet"> -->
+    <link href="../font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="../css/morris-0.4.3.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="../css/jquery.gritter.css" rel="stylesheet">
+
+    
+    <!-- 2、bootstrap组件引用 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+   <!--  3、bootstrap table组件以及中文包的引用 -->
+    <script src="../js/bootstrap-table.js"></script>
+    <link href="../css/bootstrap-table.css" rel="stylesheet" />
+    <script src="../js/bootstrap-table-zh-CN.js"></script>
+    
+    <!-- 导出 -->
+	<script src="../js/bootstrap-table-export.min.js"></script>
+	<script src="../js/tableExport.js"></script>
+	
+	<link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=2.2.0" rel="stylesheet">
+    <!-- 使得表格头部和单元格中文字居中 -->
+    <style type="text/css">
+        .table th, .table td { 
+			text-align: center;
+			vertical-align: middle!important;
+		}
+    </style>
+</head>
+
+<body>
+<div id="wrapper">
+    <!--左侧导航栏-->
+    <nav class='navbar-default navbar-static-side' role='navigation'>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+				
+                <div class="dropdown profile-element">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="../test">
+                                <span class="clear"><b>后台管理系统</b></span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <a href="../test"><i class="fa fa-th-large"></i> <span class="nav-label">主页</span></a>
+            </li>
+
+<!--             <li>
+                <a href="../zph/toZph"><i class="fa fa fa-globe"></i> <span class="nav-label">招聘会信息</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="../zph/toZph">招聘会管理</a></li>
+                </ul>
+            </li> -->
+<!--             <li>
+                <a href="toCom"><i class="fa fa-envelope"></i> <span class="nav-label">企业信息</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="toCom">企业管理</a></li>
+                </ul>
+            </li> -->
+            <li class="active">
+                <a href="#"><i class="fa fa-flask"></i> <span
+                        class="nav-label">我的企业</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <!-- <li><a href="user/add_com.html">添加企业</a></li> -->
+                    <li class="active"><a href="#">我的企业管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../wxAdmin/toWxUserAdmin"><i class="fa fa-flask"></i> <span
+                        class="nav-label">求职者管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <!-- <li><a href="user/add_com.html">添加企业</a></li> -->
+                    <li><a href="../wxAdmin/toWxUserAdmin">求职者管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../resume/toResume"><i class="fa fa-flask"></i> <span
+                        class="nav-label">简历投递管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <!-- <li><a href="user/add_com.html">添加企业</a></li> -->
+                    <li><a href="../resume/toResume">简历投递管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../admin/toAdmin"><i class="fa fa-desktop"></i> <span
+                        class="nav-label">管理员设置</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="../admin/toAdmin">用户管理</a></li>
+<!--                     <li><a href="../admin/toAdmin">角色管理</a></li>
+                    <li><a href="../admin/toAdmin">部门管理</a></li> -->
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+    <!--左侧导航栏结束-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <!--顶部导航-->
+        <script src="../js/frame/top.js"></script>
+        <!--顶部导航结束-->
+<div class="panel-body" style="padding-bottom:0px;">
+         <div class="panel panel-default">
+<!--             <div class="panel-heading">查询条件</div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group" style="margin-top:15px">
+                        <label class="control-label col-sm-1" for="txt_search_departmentname">部门名称</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_search_departmentname">
+                        </div>
+                        <label class="control-label col-sm-1" for="txt_search_statu">状态</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txt_search_statu">
+                        </div>
+                        <div class="col-sm-4" style="text-align:left;">
+                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
+                        </div>
+                    </div>
+                </form>
+            </div> -->
+        </div>
+        <div id="toolbar" class="btn-group">
+            <button type="button" class="btn btn-default" id="addBtn" data-toggle="modal" data-target="#addUserModal">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button id="btn_edit" type="button" class="btn btn-default" data-toggle="modal" data-target="#editUserModal" onclick="editUser()">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            </button>
+            <button id="btn_delete" type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteUserModal" onclick="deleteUser()">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+            </button>
+             <button id="btn_zph" type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal" onclick="addJob()">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>增加职位
+            </button>
+            <button id="btn_dl" type="button" class="btn btn-default" data-toggle="modal" onclick="downLoadQrcode()">
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>一键导出二维码
+            </button>
+            <!--
+            <button id="btn_zph" type="button" class="btn btn-default" data-toggle="modal" data-target="#editUserModal" onclick="getUser()">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>企业转移
+            </button> -->
+        </div>
+        <table id="tb_zph"></table>
+    </div>
+
+        <!--底部-->
+        <script src="../js/frame/footer.js"></script>
+        <!--底部结束-->
+    </div>
+</div>
+
+<!-- 新增用户的模态框，在修改用户中将获取一行的值放入input中，改变一些参数继续使用 -->
+		<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>新增公司信息</h3>
+					</div>
+					<div class="modal-body">
+						<form id="addUserForm" action="/zph/postZphInfo" method="post" class="form-horizontal">
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">名称</label>
+								<div class="col-sm-7">
+									<input type="text" name="cname" class="form-control" id="cname" placeholder="公司名称"/>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group" >
+								<label for="inputPassword" class="col-sm-2 control-label">联系人</label>
+								<div class="col-sm-7">
+									<input type="text" name="contactor" class="form-control" id="contactor" placeholder="公司联系人"/>
+								</div>
+								<label id="errorPassword" for="inputPassword" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputName" class="col-sm-2 control-label">电话</label>
+								<div class="col-sm-7">
+									<input type="name" name="phone" class="col-sm-4 form-control" maxlength="11" id="phone" placeholder="公司联系电话"/>
+								</div>
+								<label id="errorName" for="inputName" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputSex" class="col-sm-2 control-label">简介</label>
+								<div class="col-sm-7">
+									<textarea type="text" name="addinfo" class="col-sm-4 form-control" maxlength="500" id="addinfo" placeholder="备注信息（500字）"></textarea>
+								</div>
+								<label id="errorSex" for="inputSex" class="col-sm-3 control-label"></label>
+							</div>
+<!-- 							<div class="form-group">
+								<label for="inputPhone" class="col-sm-2 control-label">手机</label>
+								<div class="col-sm-7">
+									<input type="phone" name="phone" class="col-sm-4 form-control" id="inputPhone" placeholder="手机"/>
+								</div>
+								<label id="errorPhone" for="inputPhone" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-7">
+									<input type="email" name="email" class="col-sm-4 form-control" id="inputEmail" placeholder="邮箱"/>
+								</div>
+								<label id="errorEmail" for="inputEmail" class="col-sm-3 control-label"></label>
+							</div> -->
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="conf" class="btn btn-default" onclick="addUser()">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetAddModal()">取消</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+<!-- 修改用户的模态框 -->
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>修改公司信息</h3>
+					</div>
+					<div class="modal-body">
+						<form id="editForm" method="post" class="form-horizontal">
+							<div class="form-group" style="display:none">
+								<label for="editId" class="col-sm-2 control-label">ID</label>
+								<div class="col-sm-7">
+									<input type="id" name="id"   class="form-control" id="editId" placeholder="ID" />
+								</div>
+								<label id="errorId" for="editId" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">名称</label>
+								<div class="col-sm-7">
+									<input type="account" name="cname" class="form-control" readonly="readonly" id="editCname" placeholder="公司名称"/>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group" >
+								<label for="inputPassword" class="col-sm-2 control-label">联系人</label>
+								<div class="col-sm-7">
+									<input type="text" name="contactor" class="form-control" id="editContactor" placeholder="公司联系人"/>
+								</div>
+								<label id="errorPassword" for="inputPassword" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputName" class="col-sm-2 control-label">电话</label>
+								<div class="col-sm-7">
+									<input type="name" name="phone" class="col-sm-4 form-control" maxlength="11" id="editPhone" placeholder="公司联系电话"/>
+								</div>
+								<label id="errorName" for="inputName" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputSex" class="col-sm-2 control-label">简介</label>
+								<div class="col-sm-7">
+									<textarea type="text" name="addinfo" class="col-sm-4 form-control" maxlength="500" id="editAddinfo" placeholder="备注信息（500字）"></textarea>
+								</div>
+								<label id="errorSex" for="inputSex" class="col-sm-3 control-label"></label>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="conf" class="btn btn-default" onclick="updateUser()">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetAddModal()">取消</button>
+					</div>
+				</div>				
+			</div>
+			</div>
+		<!-- 新增用户的模态框，在修改用户中将获取一行的值放入input中，改变一些参数继续使用 -->
+		<div class="modal fade" id="addJobModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>新增公司岗位信息</h3>
+					</div>
+					<div class="modal-body">
+						<form id="addJobForm" action="/zph/postZphInfo" method="post" class="form-horizontal">
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">岗位名称</label>
+								<div class="col-sm-7">
+									<input type="text" name="jobname" class="form-control" id="jobname" placeholder="岗位名称"/>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group" >
+								<label for="inputPassword" class="col-sm-2 control-label">岗位薪资</label>
+								<div class="col-sm-7">
+									<input type="text" name="salary" class="form-control" id="salary" placeholder="岗位薪资"/>
+								</div>
+								<label id="errorPassword" for="inputPassword" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputName" class="col-sm-2 control-label">岗位人数</label>
+								<div class="col-sm-7">
+									<input type="text" name="num" class="col-sm-4 form-control" id="num" placeholder="岗位人数"/>
+								</div>
+								<label id="errorName" for="inputName" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputSex" class="col-sm-2 control-label">岗位需求</label>
+								<div class="col-sm-7">
+									<textarea maxlength="150" name="addinfo" class="col-sm-4 form-control" id="addinfo" placeholder="岗位需求(150字)"></textarea>
+								</div>
+								<label id="errorSex" for="inputSex" class="col-sm-3 control-label"></label>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="conf" class="btn btn-default" onclick="addJobInfo()">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetAddModal()">取消</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<!-- 添加公司招聘会-->
+		<div class="modal fade" id="addzphModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>添加招聘会</h3>
+					</div>
+					<div class="panel-body">
+						<table id="tb_addZph"></table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="conf" class="btn btn-default" onclick="addZph()">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetAddModal()">取消</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<!-- 企业转移-->
+		<div class="modal fade" id="changeUserModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>企业转移</h3>
+					</div>
+					<div class="panel-body">
+						<table id="tb_changeUser"></table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="conf" class="btn btn-default" onclick="changeUser()">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetAddModal()">取消</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<!-- 提示框  -->
+		<div class="modal fade" id="Tip" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>提示</h3>
+					</div>
+					<div class="modal-body" align="center">
+						<h4 id="tipContent">新增成功</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="updateEnd" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>提示</h3>
+					</div>
+					<div class="modal-body" align="center">
+						<h4 id="al">修改成功</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="addEnd" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>提示</h3>
+					</div>
+					<div class="modal-body" align="center">
+						<h4 id="add">修改成功</h4>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 修改岗位信息提示框 -->
+		<div class="modal fade" id="updateJobModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>修改岗位信息</h3>
+					</div>
+					<div class="modal-body">
+						<form id="updateJobForm" action="/com/putAddInfoById" method="post" class="form-horizontal">
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">addinfoid</label>
+								<div class="col-sm-7">
+									<textarea name="id" class="form-control" id="job_id" placeholder="岗位id"></textarea>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">岗位名称</label>
+								<div class="col-sm-7">
+									<input name="jobname" class="form-control" id="job_jobname" placeholder="岗位名称"></input>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">薪资</label>
+								<div class="col-sm-7">
+									<input name="salary" class="form-control" id="job_salary" placeholder="岗位名称"></input>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">岗位数量</label>
+								<div class="col-sm-7">
+									<input name="num" class="form-control" id="job_num" placeholder="岗位名称"></input>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">岗位需求</label>
+								<div class="col-sm-7">
+									<textarea maxlength="150" name="addinfo" class="col-sm-4 form-control" id="job_addinfo" placeholder="岗位需求(150字)"></textarea>
+								</div>
+								<label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+							</div>							
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="conf" class="btn btn-default" onclick="updateJobInfo()">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" onclick="resetAddModal()">取消</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+<!-- Mainly 导航栏收缩 -->
+<!-- <script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/bootstrap.min.js?v=3.4.0"></script> -->
+<script src="../js/plugins/jquery.metisMenu.js"></script>
+<script src="../js/plugins/jquery.slimscroll.min.js"></script>
+
+<!-- Peity -->
+<script src="../js/plugins/jquery.peity.min.js"></script>
+<script src="../js/plugins/peity-demo.js"></script>
+
+<!--导航栏收缩-->
+<!-- Custom and plugin javascript -->
+<script src="../js/hplus.js?v=2.2.0"></script>
+<script src="../js/plugins/pace.min.js"></script>
+
+<!-- jQuery UI -->
+<script src="../js/plugins/jquery-ui.min.js"></script>
+</body>
+<script>
+$(function () {
+
+    //1.初始化Table
+    var oTable = new TableInit();
+    oTable.Init();
+
+    //2.初始化Button的点击事件
+    var oButtonInit = new ButtonInit();
+    oButtonInit.Init();
+
+});
+
+
+var TableInit = function () {
+    var oTableInit = new Object();
+    //初始化Table
+    oTableInit.Init = function () {
+        $('#tb_zph').bootstrapTable({
+            url: '/com/getComInfo',         //请求后台的URL（*）
+            method: 'post',                      //请求方式（*）
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: true,                      //是否显示行间隔色
+            cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true,                   //是否显示分页（*）
+            sortable: true,                     //是否启用排序
+            sortOrder: "asc",                   //排序方式
+            //queryParams: oTableInit.queryParams,//传递参数（*）
+            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber:1,                       //初始化加载第一页，默认第一页
+            pageSize: 10,                       //每页的记录行数（*）
+            pageList: [5,10, 25, 50, 100],        //可供选择的每页的行数（*）
+            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            //strictSearch: true,
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,             //最少允许的列数
+            clickToSelect: true,                //是否启用点击选中行
+            //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            detailView: true,                   //是否显示父子表
+            showExport: true,                     //是否显示导出
+            exportDataType: "basic",              //basic', 'all', 'selected'.
+            columns: [{
+                checkbox: true
+            }, {
+                field: 'id',
+                title: '公司编号',
+                width: '80px',
+                sortable : true
+            }, {
+                field: 'cname',
+                title: '公司名称',
+                width: '320px',
+                sortable : true
+            }, {
+                field: 'contactor',
+                title: '公司联系人',
+                sortable : true
+            }, {
+                field: 'phone',
+                title: '联系电话',
+                sortable : true
+            }, {
+                field: 'addinfo',
+                title: '简介',
+                
+                sortable : true
+            }, {
+                field: 'Button',
+                title: '操作',
+                width: '160px',
+                events: operateEvents_QrCode,
+                formatter: operateFormatter_QrCode
+            } ],
+          //注册加载子表的事件。注意下这里的三个参数！
+            onExpandRow: function (index, row, $detail) {
+            	oTableInit.InitSubTable(index, row, $detail);
+            }
+        });
+    };
+  //初始化子表格(无线循环)
+    oTableInit.InitSubTable = function (index, row, $detail) {
+        var parentid = row.id;
+        var cur_table = $detail.html("<table id='subtable' style='table-layout: fixed;background-color:#BCD2EE'></table>").find('table');
+        $(cur_table).bootstrapTable({
+            url: '/job/getJobList',
+            method: 'get',
+            contentType: 'application/json;charset=UTF-8',//这里我就加了个utf-8
+            dataType: 'json',
+            queryParams: { comid: parentid },
+            ajaxOptions: { comid: parentid },
+            clickToSelect: true,
+            //height: 500,
+            //toolbar: '#toolbar_zph',
+            detailView: false,//父子表
+            uniqueId: "id",
+            pageSize: 10,
+            pageList: [10, 25],
+            columns: [{
+                checkbox: true
+            }, {
+                field: 'id',
+                title: '编号',
+                width: '80px',
+                sortable: true,                     //是否启用排序
+            }, {
+                field: 'jobname',
+                title: '岗位名称',
+                width: '',
+                sortable: true,                     //是否启用排序
+            }, {
+                field: 'salary',
+                title: '薪资',
+                width: '220px',
+                sortable: true,                     //是否启用排序
+            }, {
+                field: 'num',
+                title: '岗位数量',
+                width: '220px',
+                sortable: true,                     //是否启用排序
+            }, {
+                field: 'addinfo',
+                title: '岗位需求',
+                sortable: true,                     //是否启用排序
+            }, {
+                field: 'Button',
+                title: '操作',
+                width: '160px',
+                events: operateEvents,
+                formatter: operateFormatter
+            }],
+            //无线循环取子表，直到子表里面没有记录
+            onExpandRow: function (index, row, $Subdetail) {
+                oInit.InitSubTable(index, row, $Subdetail);
+            }
+        });
+    };
+    //得到查询的参数
+/*     oTableInit.queryParams = function (params) {
+        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+            limit: params.limit,   //页面大小
+            offset: params.offset,  //页码
+            departmentname: $("#txt_search_departmentname").val(),
+            statu: $("#txt_search_statu").val()
+        };
+        return temp;
+    }; */
+    return oTableInit;
+};
+
+
+
+var ButtonInit = function () {
+    var oInit = new Object();
+    var postdata = {};
+
+    oInit.Init = function () {
+        //初始化页面上面的按钮事件
+    };
+
+    return oInit;
+};	
+</script>
+<script>
+
+//点击取消后清空表单中已写信息
+function resetAddModal(){
+	document.getElementById("addUserForm").reset();
+}
+//新增用户
+function addUser(){
+	var param = $("#addUserForm").serializeArray();
+	//debugger;
+	$("#conf").attr("onclick","addUser()");
+	$.ajax({
+		url:"/com/postComInfo",
+		method:"post",
+		data:param,
+		dataType:"json",
+		success:function(data){
+			console.log(data);
+			if(data==1){
+				document.getElementById("add").innerText="新增成功";
+				$("#addEnd").modal('show');
+				$("#addUserModal").modal('hide');
+				$("#tb_zph").bootstrapTable('refresh');
+			}else if(data == 3){
+				document.getElementById("add").innerText="此企业已经被注册！";
+				$("#addEnd").modal('show');				
+			}else{
+				document.getElementById("add").innerText="新增失败";
+				$("#addEnd").modal('show');
+			}
+		},
+		error:function(data){
+			//console.log(data.responseText);
+			if(data.responseText=='shirError'){
+				document.getElementById("add").innerText="您没有这个操作权限!";
+				$("#addEnd").modal('show');
+			}else{
+				document.getElementById("add").innerText="新增失败";
+				$("#addEnd").modal('show');
+			}
+		}
+	});
+}
+//修改用户
+function editUser(){
+	//获取选中行的数据
+	var rows = $("#tb_zph").bootstrapTable('getSelections');
+	//console.log(rows);
+	if(rows.length!=1){
+		document.getElementById("tipContent").innerText="请选择一行数据";
+		$("#Tip").modal('show');
+	}
+	else{
+	var row = rows[0];
+	$('#editId').val(row.id);
+	$('#editCname').val(row.cname);
+	$('#editContactor').val(row.contactor);
+	$('#editPhone').val(row.phone);
+	$('#editAddinfo').val(row.addinfo);
+	$("#editModal").modal("show");
+	}
+}
+function updateUser(){
+	var param = $("#editForm").serializeArray();
+	console.log(param);
+	//设为disable则无法获取
+	$.ajax({
+		url:"/com/putComInfoById",
+		method:"post",
+		data:param,
+		dataType:"json",
+		success:function(data){
+			if(data==1){
+				$("#editModal").modal("hide");
+				document.getElementById("tipContent").innerText="修改成功";
+				$("#Tip").modal('show');
+			}
+			$("#tb_zph").bootstrapTable("refresh");
+		},
+		error:function(data){
+			alert("wrong");
+		}
+	});
+}
+/* 删除信息 */
+function deleteUser(){
+	var rows = $("#tb_zph").bootstrapTable("getSelections");
+	console.log(rows);
+	var ids = [];
+	var len = rows.length;
+	debugger;
+	for(var i=0;i<len;i++){
+		ids.push(rows[i].id);
+	}
+	//console.log(ids);
+	debugger;
+	$.ajax({
+		url:"/com/delComInfo",
+		//dataType:"json",
+		//traditional: true,//属性在这里设置
+		method:"post",
+		data:{
+			"ids":ids
+		},
+		success:function(data){
+			if(data == 1){
+				document.getElementById("tipContent").innerText="删除成功";
+				$("#Tip").modal('show');
+			}else{
+				document.getElementById("tipContent").innerText="删除失败,请至少选择一行数据";
+				$("#Tip").modal('show');
+			}
+			$("#tb_zph").bootstrapTable("refresh");
+		},
+		error:function(){
+			document.getElementById("tipContent").innerText="删除失败";
+			$("#Tip").modal('show');
+		}
+	});
+}
+//新增岗位
+function addJob(){
+	//获取选中行的数据
+	var rows = $("#tb_zph").bootstrapTable('getSelections');
+	//console.log(rows);
+	if(rows.length!=1){
+		document.getElementById("tipContent").innerText="请选择一行数据";
+		$("#Tip").modal('show');
+	}else{
+		$("#addJobModal").modal("show");
+	}
+}
+function addJobInfo(){
+		var rows = $("#tb_zph").bootstrapTable('getSelections');
+		var param = $("#addJobForm").serializeArray();
+		param.push({"name":"comid","value":rows[0].id});
+		//debugger;
+		$("#conf").attr("onclick","addUser()");
+		$.ajax({
+			url:"/job/postJob",
+			method:"post",
+			data:param,
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					document.getElementById("add").innerText="新增成功";
+					$("#addEnd").modal('show');
+					$("#addJobModal").modal('hide');
+					$("#tb_zph").bootstrapTable('refresh');
+				}else{
+					document.getElementById("add").innerText="新增失败";
+					$("#addEnd").modal('show');
+				}
+			},
+			error:function(data){
+				//console.log(data.responseText);
+				if(data.responseText=='shirError'){
+					document.getElementById("add").innerText="您没有这个操作权限!";
+					$("#addEnd").modal('show');
+				}else{
+					document.getElementById("add").innerText="新增失败";
+					$("#addEnd").modal('show');
+				}
+			}
+		});
+	}
+</script>
+<script>
+/*	增加招聘会	*/
+function addZph(){
+	var comid = [];
+	var zphid=[];
+	
+	var com = $("#tb_zph").bootstrapTable('getSelections');
+	var zph = $("#tb_addZph").bootstrapTable('getSelections');
+	var len = zph.length;
+	
+	comid.push(com[0].id);
+	for(var i=0;i<len;i++){
+		zphid.push(zph[i].id);
+	}
+	
+	//console.log(comid);
+	//console.log(zphid);
+
+	$.ajax({
+		url:"/com/getZphComid",
+		//dataType:"json",
+		//traditional: true,//属性在这里设置
+		method:"post",
+		data:{
+			"comid":comid,
+			"zphid":zphid
+		},
+		success:function(data){
+			if(data == 1){
+				$("#addzphModal").modal('hide');
+				document.getElementById("tipContent").innerText="添加成功";
+				$("#Tip").modal('show');
+			}else{
+				document.getElementById("tipContent").innerText="添加失败,请至少选择一行数据";
+				$("#Tip").modal('show');
+			}
+			$("#subtable").bootstrapTable("refresh");
+		},
+		error:function(){
+			document.getElementById("tipContent").innerText="添加失败";
+			$("#Tip").modal('show');
+		}
+	});	
+} 
+function operateFormatter(value, row, index) {
+    return [
+        '<div class="btn-group">',
+        '<button id="changeJob" type="button" class="btn btn-default" style="color:white;background-color:#FF8C00"  singleSelected=true>修改</button>',
+        '<button id="btnEditPicGroupDetail" type="button" class="btn btn-default" style="color:white;background-color:#FF3030"  singleSelected=true>删除</button>',        
+        '</div>'
+    ].join('');
+}
+window.operateEvents={
+	    //删除
+	    "click #btnEditPicGroupDetail":function (e, value, row, index) {
+	        var rows = $('#subtable').bootstrapTable('getSelections');	        
+	    	if(rows.length!=1){
+	    		document.getElementById("tipContent").innerText="请选中一场招聘会删除";
+	    		$("#Tip").modal('show');
+	    	}else{
+	    		var id = rows[0].id;
+	    		//console.log("id:"+id);
+		        $.ajax({
+		    		url:"/job/deleteJob",
+		    		//dataType:"json",
+		    		//traditional: true,//属性在这里设置
+		    		method:"post",
+		    		data:{
+		    			"id":id
+		    		},
+		    		success:function(data){
+		    			if(data == 1){
+		    				$("#addzphModal").modal('hide');
+		    				document.getElementById("tipContent").innerText="删除成功";
+		    				$("#Tip").modal('show');
+		    			}else{
+		    				document.getElementById("tipContent").innerText="删除失败,请至少选择一行数据";
+		    				$("#Tip").modal('show');
+		    			}
+		    			$("#subtable").bootstrapTable("refresh");
+		    		},
+		    		error:function(){
+		    			document.getElementById("tipContent").innerText="删除失败";
+		    			$("#Tip").modal('show');
+		    		}
+		    	});	
+	    	}
+	},
+	
+	//修改备注信息
+ 	"click #changeJob":function (e, value, row, index) {
+	    var rows = $('#subtable').bootstrapTable('getSelections');	        
+		if(rows.length!=1){
+			document.getElementById("tipContent").innerText="请选中一个职位修改";
+			$("#Tip").modal('show');
+		}else{
+			var row = rows[0];
+			$('#job_id').val(row.id);
+			$('#job_jobname').val(row.jobname);
+			$('#job_salary').val(row.salary);
+			$('#job_num').val(row.num);
+			$('#job_addinfo').val(row.addinfo);
+			$("#updateJobModal").modal('show');
+		}
+	} 
+}
+
+function operateFormatter_QrCode(value, row, index) {
+    return [
+        '<div class="btn-group">',
+        '<button id="QrCode" type="button" class="btn btn-default" style="color:white;background-color:#FF8C00"  singleSelected=true>生成二维码图片</button>',        
+        '</div>'
+    ].join('');
+}
+window.operateEvents_QrCode = {	
+	//生成二维码
+ 	"click #QrCode":function (e, value, row, index) {
+ 		var rows = $('#tb_zph').bootstrapTable('getSelections');	        
+    	if(rows.length!=1){
+    		document.getElementById("tipContent").innerText="请选中一家公司生成二维码";
+    		$("#Tip").modal('show');
+    	}else{
+    		var id = rows[0].id;
+    		var cname = rows[0].cname;
+    		//console.log("id:"+id);
+	        $.ajax({
+	    		url:"/wxAdmin/createQrCode",
+	    		//dataType:"json",
+	    		//traditional: true,//属性在这里设置
+	    		method:"post",
+	    		data:{
+	    			"id":id,
+	    			"cname":cname
+	    		},
+	    		success:function(data){
+	    			if(data == true){
+	    				$("#addzphModal").modal('hide');
+	    				document.getElementById("tipContent").innerText="生成成功";
+	    				$("#Tip").modal('show');
+	    			}else{
+	    				document.getElementById("tipContent").innerText="生成失败,请至少选择一行数据";
+	    				$("#Tip").modal('show');
+	    			}
+	    			$("#subtable").bootstrapTable("refresh");
+	    		},
+	    		error:function(){
+	    			document.getElementById("tipContent").innerText="生成失败";
+	    			$("#Tip").modal('show');
+	    		}
+	    	});	
+    	}
+	} 	
+}
+/*	增加备注信息	*/
+function updateJobInfo(){
+	var param = $("#updateJobForm").serializeArray();
+	$.ajax({
+		url:"/job/putJob",
+		//dataType:"json",
+		//traditional: true,//属性在这里设置
+		method:"post",
+		data:param,
+		success:function(data){
+			if(data == 1){
+				$("#updateJobModal").modal('hide');
+				document.getElementById("tipContent").innerText="修改岗位信息成功";
+				$("#Tip").modal('show');
+			}else{
+				document.getElementById("tipContent").innerText="修改岗位信息失败,请至少选择一行数据";
+				$("#Tip").modal('show');
+			}
+			$("#subtable").bootstrapTable("refresh");
+		},
+		error:function(){
+			document.getElementById("tipContent").innerText="修改岗位信息失败";
+			$("#Tip").modal('show');
+		}
+	});	
+} 
+/* 一键导出所有二维码 */
+function downLoadQrcode(){
+	$.ajax({
+		url:"/wxAdmin/downLoadQrcode",
+		//dataType:"json",
+		//traditional: true,//属性在这里设置
+		method:"post",
+		//data:param,
+		success:function(data){
+			if(data == true){
+				document.getElementById("tipContent").innerText="二维码生成成功！";
+				$("#Tip").modal('show');
+			}else{
+				document.getElementById("tipContent").innerText="二维码生成失败！";
+				$("#Tip").modal('show');
+			}
+		},
+		error:function(){
+			document.getElementById("tipContent").innerText="二维码生成失败！";
+			$("#Tip").modal('show');
+		}
+	});		
+}
+</script>
+</html>

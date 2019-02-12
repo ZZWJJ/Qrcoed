@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录页面</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport"
+		  content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no,email=no"/>
+	<link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+</head>
+<body>
+<!--头部-->
+<div class="header dh">
+	<div class="baoo">
+		<h1 class="logo" style="color:#FFFFFF;">用户登录</h1>
+		<div class="dh_close"><img src="../images/index_cd.png" alt="close"></div>
+	</div>
+</div>
+<div class="nav full">
+	<ul>
+		<li><a href="javascript:history.go(-1);" target="_self">返回上一页</a></li>
+		<li><a href="#" target="_self">登录</a></li>
+		<li><a href="../wxuser/toRegister">注册</a></li>
+	</ul>
+	<img src="../images/index_cuo.png" alt="cuo" class="nav_cuo">
+</div>
+<!--头部-->
+<!--主体部分 s-->
+<div class="wrap">
+	<!--公司简介-->
+	<section class="index_hx">
+		<div class="index_hx_o" style="margin-top: 0.5rem">
+			<p class="po"><span>User login</span></p>
+			<p class="pt">登录</p>
+			<a></a>
+		</div>
+		<div class="index_form">
+			<!--登录-->
+			<form action="" method="post" id="loginForm">
+				<div class="form-group">
+					<span>账号：</span> <input type="text" class="input-group-lg" placeholder="请输入您的手机号码" name="username" required>
+				</div>
+				<div class="form-group">
+					<span>密码：</span> <input type="password" class="input-group-lg" placeholder="请输入您的密码" name="password" required>
+				</div>
+				<div class="mar30 bradius rczp_t" >
+					<button class="btn btn-primary btn-lg ripple" type="submit" onclick="login()">登录</button>
+				</div>
+			</form>
+		</div>
+	</section>
+	<!--登录 -->
+	<!--联系我们开始-->
+	<!--<div class="footer2">-->
+		<!--<p><span>联系人：</span>张小姐</p>-->
+		<!--<p><span>联系电话：</span>0515-88866558</p>-->
+		<!--&lt;!&ndash;<a class="btn btn-primary btn-lg ripple" href="register.html" target="_self">投递简历</a>&ndash;&gt;-->
+	<!--</div>-->
+</div>
+<!--联系我们-->
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/swiper.min.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+<script>
+function login(){
+	var param = $("#loginForm").serializeArray();
+	//debugger;
+	//$("#conf").attr("onclick","addUser()");
+	$.ajax({
+		url:"/login",
+		method:"post",
+		data:param,
+		dataType:"json",
+		success:function(data){
+			console.log(data);
+			if(data=='ok'){
+				window.history.back(-1);
+				return false; 
+			}else{
+				document.getElementById("add").innerText="新增失败";
+				$("#addEnd").modal('show');
+			}			
+		},
+		error:function(data){
+			//console.log(data.responseText);
+			if(data.responseText=='shirError'){
+				document.getElementById("add").innerText="您没有这个操作权限!";
+				$("#addEnd").modal('show');
+			}else{
+				document.getElementById("add").innerText="新增失败";
+				$("#addEnd").modal('show');
+			}
+		}
+	});
+}
+</script>
+</body>
+</html>

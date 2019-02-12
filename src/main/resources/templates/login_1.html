@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+<title>登录页面</title>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>   
+</head>
+<script type="text/javascript">
+function sendAjax()
+{
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var vcode = $("#vcode").val();
+        var rememberMe =$('#rememberMe').is(':checked');
+ $.ajax(
+    {
+        url:"/login",
+        data:{"username":username,"password":password},
+        type:"post",
+        /* dataType:"json", */
+        success:function(data)
+        { 
+             if(data == 'ok'){
+              	//alert(data);
+              	window.location.href='test';
+             }else{
+            	$("#erro").html("登录失败，用户名或密码不正确！");
+            } 
+ 
+        },
+        error: function() {
+            $("#erro").html("登录失败");
+          }
+    }); 
+    }
+</script>
+<body>
+	        错误信息：<h4 id="erro"></h4>
+			<p>账号：<input type="text" name="username" id="username" value="admin"/></p>
+			<p>密码：<input type="text" name="password" id="password" value="123456"/></p>
+<!-- 			 <p>
+            验证码：<input type="text" name="vcode" id="vcode"/>
+        </p>
+        <p>
+            <img alt="验证码" id="codePic" src="http://localhost:8080/getGifCode" onclick="change()"></img>
+        </p> -->
+        	<P><input type="checkbox" name="rememberMe" id="rememberMe" />记住我</P>
+			<p><input type="button" onclick="sendAjax()" value="登录" id="ajaxLogin"/></p>
+ 
+</body>
+</html>

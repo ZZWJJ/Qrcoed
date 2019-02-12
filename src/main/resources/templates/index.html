@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>首页-后台管理系统</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- <link href="../css/bootstrap.min.css?v=3.4.0" rel="stylesheet"> -->
+    <link href="../font-awesome/css/font-awesome.css?v=4.3.0" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="../css/morris-0.4.3.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="../css/jquery.gritter.css" rel="stylesheet">
+
+    
+    <!-- 2、bootstrap组件引用 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+   <!--  3、bootstrap table组件以及中文包的引用 -->
+    <script src="../js/bootstrap-table.js"></script>
+    <link href="../css/bootstrap-table.css" rel="stylesheet" />
+    <script src="../js/bootstrap-table-zh-CN.js"></script>
+    
+    <!-- 导出 -->
+	<script src="../js/bootstrap-table-export.min.js"></script>
+	<script src="../js/tableExport.js"></script>
+	
+	<link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=2.2.0" rel="stylesheet">
+    
+    <!-- echarts -->
+    <script src="../js/echarts.js"></script>
+</head>
+<style>
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+<body>
+<div id="wrapper">
+<!--左侧导航栏-->
+    <nav class='navbar-default navbar-static-side' role='navigation'>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+				
+                <div class="dropdown profile-element">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="../test">
+                                <span class="clear"><b>后台管理系统</b></span>
+                    </a>
+                </div>
+            </li>
+            <li class="active">
+                <a href="#" class="active"><i class="fa fa-th-large"></i> <span class="nav-label">主页</span></a>
+            </li>
+
+<!--             <li>
+                <a href="../zph/toZph"><i class="fa fa fa-globe"></i> <span class="nav-label">招聘会信息</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="../zph/toZph">招聘会管理</a></li>
+                </ul>
+            </li> 
+            <li>
+                <a href="toCom"><i class="fa fa-envelope"></i> <span class="nav-label">企业信息</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="com/toCom">企业管理</a></li>
+                </ul>
+            </li>-->
+            <li>
+                <a href="../com/toMyCom"><i class="fa fa-flask"></i> <span
+                        class="nav-label">我的企业</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <!-- <li><a href="user/add_com.html">添加企业</a></li> -->
+                    <li><a href="../com/toMyCom">我的企业管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../wxAdmin/toWxUserAdmin"><i class="fa fa-flask"></i> <span
+                        class="nav-label">求职者管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <!-- <li><a href="user/add_com.html">添加企业</a></li> -->
+                    <li><a href="../wxAdmin/toWxUserAdmin">求职者管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../resume/toResume"><i class="fa fa-flask"></i> <span
+                        class="nav-label">简历投递管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <!-- <li><a href="user/add_com.html">添加企业</a></li> -->
+                    <li><a href="../resume/toResume">简历投递管理</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="../admin/toAdmin"><i class="fa fa-desktop"></i> <span
+                        class="nav-label">管理员设置</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="../admin/toAdmin">用户管理</a></li>
+<!--                     <li><a href="../admin/toAdmin">角色管理</a></li>
+                    <li><a href="../admin/toAdmin">部门管理</a></li> -->
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+    <!--左侧导航栏结束-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <!--顶部导航-->
+        <script src="../js/frame/top.js"></script>
+        <!--顶部导航结束-->
+
+		<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+		
+			 <div class="row col-center-block">
+			    <div class="form-inline">
+			    	<div id="main" style="width: 800px;height:400px;" class="form-control"></div>
+					<div id="main_pie" style="width:800px;height:400px;margin-left:45px" class="form-control"></div>
+			    </div>
+			 </div>
+			 <div class="row col-center-block" style="margin-top:30px;">			 	
+			 	<div class="form-inline">
+			 		<div id="zph2com" style="width:100%;height:400px;" class="form-control"></div>
+			 	</div>
+			 </div>
+        <!--底部-->
+        <script src="../js/frame/footer.js"></script>
+        <!--底部结束-->
+    </div>
+</div>
+<script type="text/javascript">
+	//	柱状图        
+     var myChart = echarts.init(document.getElementById('main'));
+     //var myChart_pie = echarts.init(document.getElementById('main_pie'));
+     var names=[];    //类别数组（实际用来盛放X轴坐标值）
+     var nums=[];    //销量数组（实际用来盛放Y坐标值
+     // 显示标题，图例和空的坐标轴
+     myChart.setOption({
+         title: {
+             text: '企业和用户数量'
+         },
+         toolbox: { //可视化的工具箱
+             show: true,
+             feature: {
+                 dataView: { //数据视图
+                     show: true
+                 },
+                 restore: { //重置
+                     show: true
+                 },
+                 saveAsImage: {//保存图片
+                     show: true
+                 }
+             }
+         },
+         tooltip :{},
+         legend: {
+             data:['数量']
+         },
+         xAxis: {
+             data: []
+         },
+         yAxis: {},
+         series: [{
+             name: '数量',
+             type: 'bar',
+             data: [],
+             itemStyle: {
+                 normal: {
+                     // 随机显示
+                     //color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+                   
+                     // 定制显示（按顺序）
+                     color: function(params) { 
+                         var colorList = ['#A52A2A','#9ACD32','#8B6914','#CD8500','#98FB98', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ]; 
+                         return colorList[params.dataIndex] 
+                     }
+                 },
+             },
+         }]
+     });
+     /* myChart_pie.setOption(option); */
+     // 异步加载数据
+     myChart.showLoading();
+     $.get('/echart/getCount').done(function (result) {
+    	 myChart.hideLoading();
+    	 //console.log(result);
+    	 if(result){
+             for(var i=0;i<result.length;i++){       
+                 names.push(result[i].name);    //挨个取出类别并填入类别数组
+               }
+              for(var i=0;i<result.length;i++){       
+                  nums.push(result[i].amount);    //挨个取出销量并填入销量数组
+                }
+    	 }
+         // 填入数据
+         // 柱状图
+         myChart.setOption({
+             xAxis: {
+                 data: names
+             },
+             series: [{
+                 // 根据名字对应到相应的系列
+                 name: '数量',
+                 data: nums
+             }]
+         });
+     });
+</script>
+<script>
+var myChart_pie = echarts.init(document.getElementById('main_pie'));
+option = {
+	    title : {
+	        text: '企业和用户数量',
+	        x:'center'
+	    },
+        toolbox: { //可视化的工具箱
+            show: true,
+            feature: {
+                dataView: { //数据视图
+                    show: true
+                },
+                restore: { //重置
+                    show: true
+                },
+                saveAsImage: {//保存图片
+                    show: true
+                }
+            }
+        },
+	    tooltip : {
+	        trigger: 'item',
+	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        left: 'left',
+	        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+	    },
+	    series : [
+	        {
+	            name: '企业数量',
+	            type: 'pie',
+	            radius : '55%',
+	            center: ['50%', '60%'],
+	            data:[
+	                {value:335, name:'直接访问'},
+	                {value:310, name:'邮件营销'},
+	                {value:234, name:'联盟广告'},
+	                {value:135, name:'视频广告'},
+	                {value:1548, name:'搜索引擎'}
+	            ],
+	            itemStyle: {
+	                emphasis: {
+	                    shadowBlur: 10,
+	                    shadowOffsetX: 0,
+	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                }
+	            }
+	        }
+	    ]
+	};
+	
+myChart_pie.setOption(option);
+// 异步请求信息
+myChart_pie.showLoading();
+$.ajax({
+    type : "get",
+    async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+
+    url : "/echart/getCount",    //请求发送到
+    data : {},
+    dataType : "json",        //返回数据形式为json
+
+    success : function(result) { 
+         myChart_pie.setOption({        //填入数据
+            legend: {
+                data: result.name
+            },
+            series: [{
+                data: (function(){
+                    var rs = [];
+                    for(var i=0;i<result.length;i++){
+                        rs.push({
+                            name :result[i].name,
+                            value:result[i].amount
+                        });
+                    }
+                    return rs;
+                })()
+            }]
+        });
+
+         myChart_pie.hideLoading();    //隐藏加载动画
+    },
+    error : function(errorMsg) {
+        alert("图表请求数据失败!");
+        myChart.hideLoading();
+    }
+}) 
+
+</script>
+<script>
+//	柱状图        
+var myChart_zph2com = echarts.init(document.getElementById('zph2com'));
+//var myChart_pie = echarts.init(document.getElementById('main_pie'));
+var names1=[];    //类别数组（实际用来盛放X轴坐标值）
+var nums1=[];    //销量数组（实际用来盛放Y坐标值
+// 显示标题，图例和空的坐标轴
+myChart_zph2com.setOption({
+    title: {
+        text: '企业岗位投递数量'
+    },
+    toolbox: { //可视化的工具箱
+        show: true,
+        feature: {
+            dataView: { //数据视图
+                show: true
+            },
+            restore: { //重置
+                show: true
+            },
+            saveAsImage: {//保存图片
+                show: true
+            }
+        }
+    },
+    tooltip :{},
+    legend: {
+        data:['岗位投递数量']
+    },
+    xAxis: {
+        axisLabel: {  
+        	interval:0,  
+        	rotate:10,
+            textStyle:{
+                color:"#222"
+              }
+        } ,
+        data: []
+    },
+    yAxis: {},
+    series: [{
+        name: '岗位投递数量',
+        type: 'bar',
+        data: [],
+        itemStyle: {
+            normal: {
+                // 随机显示
+                //color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+              
+                // 定制显示（按顺序）
+                color: function(params) { 
+                    var colorList = ['#C33531','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ]; 
+                    return colorList[params.dataIndex] 
+                }
+            },
+        },
+    }]
+});
+/* myChart_pie.setOption(option); */
+// 异步加载数据
+myChart_zph2com.showLoading();
+$.get('/echart/getJobAmount').done(function (result) {
+	myChart_zph2com.hideLoading();
+	 //console.log(result);
+	 if(result){
+        for(var i=0;i<result.length;i++){       
+            names1.push(result[i].cname+"\n"+result[i].jobname);    //挨个取出类别并填入类别数组
+          }
+         for(var i=0;i<result.length;i++){       
+             nums1.push(result[i].amount);    //挨个取出销量并填入销量数组
+           }
+	 }
+    // 填入数据
+    // 柱状图
+    myChart_zph2com.setOption({
+        xAxis: {
+            data: names1
+        },
+        series: [{
+            // 根据名字对应到相应的系列
+            name: '岗位投递数量',
+            data: nums1
+        }]
+    });
+});
+</script>
+<!-- Mainly 导航栏收缩 -->
+<!-- <script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/bootstrap.min.js?v=3.4.0"></script> -->
+<script src="../js/plugins/jquery.metisMenu.js"></script>
+<script src="../js/plugins/jquery.slimscroll.min.js"></script>
+
+<!-- Peity -->
+<script src="../js/plugins/jquery.peity.min.js"></script>
+<script src="../js/plugins/peity-demo.js"></script>
+
+<!--导航栏收缩-->
+<!-- Custom and plugin javascript -->
+<script src="../js/hplus.js?v=2.2.0"></script>
+<script src="../js/plugins/pace.min.js"></script>
+
+<!-- jQuery UI -->
+<script src="../js/plugins/jquery-ui.min.js"></script>
+</body>
+</html>
